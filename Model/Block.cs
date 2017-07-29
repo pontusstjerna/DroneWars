@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DroneWars.Model
 {
-    public enum BlockType { STONE}
+    public enum BlockType { STONE, GRASS, ICE}
 
     public class Block
     {

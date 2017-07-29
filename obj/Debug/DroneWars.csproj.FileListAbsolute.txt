@@ -20,3 +20,13 @@ G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\tra
 G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\blocks\STONE.xnb
 G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\drones\drone1.xnb
 G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\drones\drone2.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\blocks\GRASS.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\drones\drone1_0.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\drones\drone1_1.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\drones\drone1_2.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\drones\drone1_3.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\drones\drone2_0.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\drones\drone2_1.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\drones\drone2_2.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\drones\drone2_3.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\blocks\ICE.xnb

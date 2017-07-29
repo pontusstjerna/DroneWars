@@ -109,12 +109,17 @@ namespace DroneWars
             return blocks;
         }
 
-        private List<Texture2D> LoadDrones()
+        private List<List<Texture2D>> LoadDrones()
         {
-            List<Texture2D> drones = new List<Texture2D>();
+            List<List<Texture2D>> drones = new List<List<Texture2D>>();
             for(int i = 1; i <= world.Drones.Count; i++)
             {
-                drones.Add(Content.Load<Texture2D>("drones/drone" + i));
+                List<Texture2D> droneTextures = new List<Texture2D>();
+                for(int j = 0; j < WorldRenderer.NUM_FRAMES; j++)
+                {
+                    droneTextures.Add(Content.Load<Texture2D>("drones/drone" + i + "_" + j));
+                }
+                drones.Add(droneTextures);
             }
 
             return drones;

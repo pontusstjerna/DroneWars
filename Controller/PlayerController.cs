@@ -54,6 +54,9 @@ namespace DroneWars.Controller
                     world.Reset();
             }
 
+            if (newState.GetPressedKeys().Length == 0 && oldState.GetPressedKeys().Length > 0)
+                world.Drones[0].Release();
+
             oldState = newState;
         }
     }

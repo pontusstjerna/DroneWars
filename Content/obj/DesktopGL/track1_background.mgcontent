@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>G:/Programming/C#.net/dronewars/DroneWars/Content/track1_background.png</SourceFile>
-  <SourceTime>2017-07-29T18:05:18.9000441+02:00</SourceTime>
+  <SourceTime>2017-07-29T23:08:47.7824094+02:00</SourceTime>
   <DestFile>G:/Programming/C#.net/dronewars/DroneWars/Content/bin/DesktopGL/track1_background.xnb</DestFile>
-  <DestTime>2017-07-29T18:05:26.5520764+02:00</DestTime>
+  <DestTime>2017-07-29T23:08:50.129001+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
