@@ -21,7 +21,8 @@ namespace DroneWars.Model
                 new Block(BlockType.STONE, new Point(0, 500), WIDTH, 100),
                 new Block(BlockType.STONE, new Point(0, 0), WIDTH, 50),
                 new Block(BlockType.STONE, new Point(0, 0), 20, HEIGHT),
-                new Block(BlockType.STONE, new Point(WIDTH - 20, 0), 20, HEIGHT)
+                new Block(BlockType.STONE, new Point(WIDTH - 20, 0), 20, HEIGHT),
+
             };
 
             SpawnDrones();
