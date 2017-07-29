@@ -14,15 +14,17 @@ namespace DroneWars.View
         private World world;
         private GraphicsDevice gd;
         private Texture2D background;
+        private List<Texture2D> drones;
         private Dictionary<BlockType, Texture2D> blocks;
         private float scale;
 
-        public WorldRenderer(World world, GraphicsDevice gd, Texture2D background, Dictionary<BlockType, Texture2D> blocks)
+        public WorldRenderer(World world, GraphicsDevice gd, Texture2D background, Dictionary<BlockType, Texture2D> blocks, List<Texture2D> drones)
         {
             this.world = world;
             this.gd = gd;
             this.background = background;
             this.blocks = blocks;
+            this.drones = drones;
 
             scale = Math.Min((float)gd.Viewport.Height / World.HEIGHT, (float)gd.Viewport.Width / World.WIDTH);
         }
@@ -31,6 +33,7 @@ namespace DroneWars.View
         {
             RenderBackground(sb);
             RenderBlocks(sb);
+            RenderDrones(sb);
         }
 
         private void RenderBackground(SpriteBatch sb)
@@ -76,6 +79,16 @@ namespace DroneWars.View
         private void RenderBlockPiece(SpriteBatch sb, Texture2D texture, float x, float y)
         {
             sb.Draw(texture, new Vector2(x, y), Color.White);
+        }
+
+        private void RenderDrones(SpriteBatch sb)
+        {
+            sb.Begin();
+            for(int i = 0; i < world.Drones.Count; i++)
+            {
+                sb.Draw(drones[i], world.Drones[i].Pos * scale, Color.White);
+            }
+            sb.End();
         }
     } 
 }

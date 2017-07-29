@@ -9,39 +9,60 @@ namespace DroneWars.Model
 {
     public class Drone
     {
+        public const int WIDTH = 50;
+        public const int HEIGHT = 20;
+
         public Vector2 Pos { get { return pos; } }
 
+        private const int hoverLimit = 10;
+
         private Vector2 pos;
+        private Vector2 velocity;
         private float dTime;
+
+        private Random random;
 
         public Drone(Vector2 startPos)
         {
             pos = startPos;
+            random = new Random();
         }
 
         public void Update(float dTime)
         {
             this.dTime = dTime;
+            pos += velocity * dTime;
+
+            Hover();
         }
 
         public void Up()
         {
-            pos.Y -= dTime;
+            velocity.Y -= dTime;
         }
 
         public void Down()
         {
-            pos.Y += dTime;
+            velocity.Y += dTime;
         }
 
         public void Left()
         {
-            pos.X -= dTime;
+            velocity.X -= dTime;
         }
 
         public void Right()
         {
-            pos.X += dTime;
+            velocity.X += dTime;
+        }
+
+        private void Hover()
+        {
+            if(velocity.Length() < hoverLimit)
+            {
+                velocity.Y += (float)random.NextDouble() - 0.5f;
+                velocity.X += (float)random.NextDouble() - 0.5f;
+            }
         }
     }
 }

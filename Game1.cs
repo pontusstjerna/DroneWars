@@ -49,7 +49,8 @@ namespace DroneWars
             world = new World();
             renderer = new WorldRenderer(world, GraphicsDevice,
                 Content.Load<Texture2D>("track1_background"),
-                LoadBlocks()
+                LoadBlocks(),
+                LoadDrones()
                 );
                
         }
@@ -73,7 +74,8 @@ namespace DroneWars
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            float dTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            world.Update(dTime);
 
             base.Update(gameTime);
         }
@@ -101,6 +103,17 @@ namespace DroneWars
             }
 
             return blocks;
+        }
+
+        private List<Texture2D> LoadDrones()
+        {
+            List<Texture2D> drones = new List<Texture2D>();
+            for(int i = 1; i <= world.Drones.Count; i++)
+            {
+                drones.Add(Content.Load<Texture2D>("drones/drone" + i));
+            }
+
+            return drones;
         }
     }
 }

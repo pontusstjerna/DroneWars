@@ -16,10 +16,7 @@ namespace DroneWars.Model
 
         public World()
         {
-            Drones = new List<Drone>
-            {
-                new Drone(new Vector2(50, 50))
-            };
+            SpawnDrones();
 
             Blocks = new List<Block>
             {
@@ -34,6 +31,19 @@ namespace DroneWars.Model
             {
                 drone.Update(dTime);
             });
+        }
+
+        public void Reset()
+        {
+            SpawnDrones();
+        }
+
+        private void SpawnDrones()
+        {
+            Drones = new List<Drone>
+            {
+                new Drone(new Vector2(50, 50))
+            };
         }
     }
 }
