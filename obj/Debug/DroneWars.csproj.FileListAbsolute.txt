@@ -19,3 +19,4 @@ G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\tra
 G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\track1_foreground.xnb
 G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\blocks\STONE.xnb
 G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\drones\drone1.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\drones\drone2.xnb

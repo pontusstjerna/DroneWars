@@ -13,10 +13,13 @@ namespace DroneWars.Model
         public const int HEIGHT = 20;
 
         public Vector2 Pos { get { return pos; } }
+        public int ID { get; private set; }
 
-        private const int hoverLimit = 10;
-        private const int accVertical = 50;
-        private const int accHorizontal = 30;
+        private const int hoverLimit = 30;
+        private const int accVertical = 200;
+        private const int accHorizontal = 150;
+        private const float bounceFriction = 0.5f;
+        private const float airResistance = 1f;
 
         private Vector2 pos;
         private Vector2 velocity;
@@ -24,9 +27,10 @@ namespace DroneWars.Model
 
         private Random random;
 
-        public Drone(Vector2 startPos)
+        public Drone(Vector2 startPos, int id)
         {
             pos = startPos;
+            ID = id;
             random = new Random();
         }
 
@@ -34,6 +38,8 @@ namespace DroneWars.Model
         {
             this.dTime = dTime;
             pos += velocity * dTime;
+
+            velocity *= 1 - airResistance * dTime;
 
             Hover();
         }
@@ -58,12 +64,17 @@ namespace DroneWars.Model
             velocity.X += dTime*accHorizontal;
         }
 
+        internal void Bounce()
+        {
+            velocity.Y = -velocity.Y*bounceFriction;
+        }
+
         private void Hover()
         {
             if(velocity.Length() < hoverLimit)
             {
-                velocity.Y += (float)random.NextDouble() - 0.5f;
-                velocity.X += (float)random.NextDouble() - 0.5f;
+                velocity.Y += (float)random.NextDouble()*10 - 0.5f*10;
+                velocity.X += (float)random.NextDouble()*10 - 0.5f*10;
             }
         }
     }

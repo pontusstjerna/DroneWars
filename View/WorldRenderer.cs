@@ -70,15 +70,17 @@ namespace DroneWars.View
                 {
                     for (float y = 0; y < block.Rect.Height * scale; y += texture.Height)
                     {
-                        RenderBlockPiece(sb, texture, x + block.Rect.X * scale, y + block.Rect.Y * scale);
+                        RenderBlockPiece(sb, texture, x + block.Rect.X * scale, y + block.Rect.Y * scale, 
+                            (int)Math.Min(texture.Width, block.Rect.Width*scale - x), 
+                            (int)Math.Min(texture.Height, block.Rect.Height * scale - y));
                     }
                 }
             }
         }
 
-        private void RenderBlockPiece(SpriteBatch sb, Texture2D texture, float x, float y)
+        private void RenderBlockPiece(SpriteBatch sb, Texture2D texture, float x, float y, int width, int height)
         {
-            sb.Draw(texture, new Vector2(x, y), Color.White);
+            sb.Draw(texture, new Vector2(x, y), new Rectangle(0, 0, width, height), Color.White);
         }
 
         private void RenderDrones(SpriteBatch sb)
