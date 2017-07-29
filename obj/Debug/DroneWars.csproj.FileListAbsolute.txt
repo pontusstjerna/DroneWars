@@ -15,3 +15,6 @@ G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\MonoGame.Fr
 G:\Programming\C#.net\dronewars\DroneWars\obj\Debug\DroneWars.csprojResolveAssemblyReference.cache
 G:\Programming\C#.net\dronewars\DroneWars\obj\Debug\DroneWars.exe
 G:\Programming\C#.net\dronewars\DroneWars\obj\Debug\DroneWars.pdb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\track1_background.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\track1_foreground.xnb
+G:\Programming\C#.net\dronewars\DroneWars\bin\DesktopGL\AnyCPU\Debug\Content\blocks\STONE.xnb

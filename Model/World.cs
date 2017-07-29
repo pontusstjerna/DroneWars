@@ -10,11 +10,22 @@ namespace DroneWars.Model
     public class World
     {
         public List<Drone> Drones { get; private set; }
+        public List<Block> Blocks { get; private set; }
+        public const int WIDTH  = 1000;
+        public const int HEIGHT = 600;
 
         public World()
         {
-            Drones = new List<Drone>();
-            Drones.Add(new Drone(new Vector2(50, 50)));
+            Drones = new List<Drone>
+            {
+                new Drone(new Vector2(50, 50))
+            };
+
+            Blocks = new List<Block>
+            {
+                new Block(BlockType.STONE, new Point(0, 500), WIDTH, 100),
+                new Block(BlockType.STONE, new Point(0, 0), WIDTH, 10)
+            };
         }
 
         public void Update(float dTime)

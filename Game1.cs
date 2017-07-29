@@ -1,6 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DroneWars.Model;
+using DroneWars.View;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 
 namespace DroneWars
 {
@@ -11,7 +15,11 @@ namespace DroneWars
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+
+        private World world;
+        private WorldRenderer renderer;
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -37,10 +45,13 @@ namespace DroneWars
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            world = new World();
+            renderer = new WorldRenderer(world, GraphicsDevice,
+                Content.Load<Texture2D>("track1_background"),
+                LoadBlocks()
+                );
+               
         }
 
         /// <summary>
@@ -75,9 +86,21 @@ namespace DroneWars
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            renderer.Render(spriteBatch, (float)gameTime.ElapsedGameTime.TotalSeconds);
 
             base.Draw(gameTime);
+        }
+
+        private Dictionary<BlockType, Texture2D> LoadBlocks()
+        {
+            Dictionary<BlockType, Texture2D> blocks = new Dictionary<BlockType, Texture2D>();
+
+            foreach(BlockType type in Enum.GetValues(typeof(BlockType)))
+            {
+                blocks.Add(type, Content.Load<Texture2D>("blocks/" + type.ToString()));
+            }
+
+            return blocks;
         }
     }
 }
