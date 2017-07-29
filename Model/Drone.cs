@@ -15,6 +15,8 @@ namespace DroneWars.Model
         public Vector2 Pos { get { return pos; } }
 
         private const int hoverLimit = 10;
+        private const int accVertical = 50;
+        private const int accHorizontal = 30;
 
         private Vector2 pos;
         private Vector2 velocity;
@@ -38,22 +40,22 @@ namespace DroneWars.Model
 
         public void Up()
         {
-            velocity.Y -= dTime;
+            velocity.Y -= dTime*accVertical;
         }
 
         public void Down()
         {
-            velocity.Y += dTime;
+            velocity.Y += dTime*accVertical;
         }
 
         public void Left()
         {
-            velocity.X -= dTime;
+            velocity.X -= dTime*accHorizontal;
         }
 
         public void Right()
         {
-            velocity.X += dTime;
+            velocity.X += dTime*accHorizontal;
         }
 
         private void Hover()

@@ -1,4 +1,5 @@
-﻿using DroneWars.Model;
+﻿using DroneWars.Controller;
+using DroneWars.Model;
 using DroneWars.View;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,6 +19,7 @@ namespace DroneWars
 
         private World world;
         private WorldRenderer renderer;
+        private PlayerController controller;
 
 
         public Game1()
@@ -47,6 +49,7 @@ namespace DroneWars
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             world = new World();
+            controller = new PlayerController(world);
             renderer = new WorldRenderer(world, GraphicsDevice,
                 Content.Load<Texture2D>("track1_background"),
                 LoadBlocks(),
@@ -75,6 +78,7 @@ namespace DroneWars
                 Exit();
 
             float dTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            controller.Update();
             world.Update(dTime);
 
             base.Update(gameTime);
