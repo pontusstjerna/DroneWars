@@ -40,7 +40,7 @@ namespace DroneWars.Controller
                 if (!drone.OnGround)
                 {
                     SoundEffectInstance flyingSound = sounds["flying"];
-                    flyingSound.Pitch = Math.Min(Math.Max((drone.Vel.Length() * 0.1f), 1), -1);
+                    flyingSound.Pitch = Math.Max(Math.Min((drone.Vel.Length() * 0.005f), 1), -1);
                     flyingSound.Pan = (drone.Pos.X - World.WIDTH / 2) / World.WIDTH;
                     flyingSound.Play();
                 }
