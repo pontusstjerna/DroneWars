@@ -12,15 +12,16 @@ namespace DroneWars.Controller
     {
         private Dictionary<string, SoundEffectInstance> sounds;
         private World world;
+        private SoundEffectInstance test;
 
         public SoundController(World world, Dictionary<string, SoundEffect> sounds)
         {
             this.world = world;
 
-            sounds = new Dictionary<string, SoundEffect>();
-            foreach(var sound in sounds)
+            this.sounds = new Dictionary<string, SoundEffectInstance>();
+            foreach(KeyValuePair<string, SoundEffect> sound in sounds)
             {
-                var sei = sound.Value.CreateInstance();
+                SoundEffectInstance sei = sound.Value.CreateInstance();
                 sei.IsLooped = true;
 
                 this.sounds.Add(sound.Key, sei);
@@ -38,8 +39,8 @@ namespace DroneWars.Controller
             {
                 if (!drone.OnGround)
                 {
-                    var flyingSound = sounds["flying"];
-                    flyingSound.Pitch = 1 + drone.Vel.Length() * 0.01f;
+                    SoundEffectInstance flyingSound = sounds["flying"];
+                    flyingSound.Pitch = Math.Min(Math.Max((drone.Vel.Length() * 0.1f), 1), -1);
                     flyingSound.Pan = (drone.Pos.X - World.WIDTH / 2) / World.WIDTH;
                     flyingSound.Play();
                 }
