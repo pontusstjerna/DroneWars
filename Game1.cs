@@ -2,6 +2,7 @@
 using DroneWars.Model;
 using DroneWars.View;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -20,6 +21,7 @@ namespace DroneWars
         private World world;
         private WorldRenderer renderer;
         private PlayerController controller;
+        private SoundController soundController;
 
 
         public Game1()
@@ -53,9 +55,9 @@ namespace DroneWars
             renderer = new WorldRenderer(world, GraphicsDevice,
                 Content.Load<Texture2D>("track1_background"),
                 LoadBlocks(),
-                LoadDrones()
-                );
-               
+                LoadDrones());
+
+            soundController = new SoundController(world, LoadSounds());
         }
 
         /// <summary>
@@ -80,6 +82,7 @@ namespace DroneWars
             float dTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             controller.Update();
             world.Update(dTime);
+            soundController.Update();
 
             base.Update(gameTime);
         }
@@ -101,7 +104,7 @@ namespace DroneWars
         {
             Dictionary<BlockType, Texture2D> blocks = new Dictionary<BlockType, Texture2D>();
 
-            foreach(BlockType type in Enum.GetValues(typeof(BlockType)))
+            foreach (BlockType type in Enum.GetValues(typeof(BlockType)))
             {
                 blocks.Add(type, Content.Load<Texture2D>("blocks/" + type.ToString()));
             }
@@ -112,10 +115,10 @@ namespace DroneWars
         private List<List<Texture2D>> LoadDrones()
         {
             List<List<Texture2D>> drones = new List<List<Texture2D>>();
-            for(int i = 1; i <= world.Drones.Count; i++)
+            for (int i = 1; i <= world.Drones.Count; i++)
             {
                 List<Texture2D> droneTextures = new List<Texture2D>();
-                for(int j = 0; j < WorldRenderer.NUM_FRAMES; j++)
+                for (int j = 0; j < WorldRenderer.NUM_FRAMES; j++)
                 {
                     droneTextures.Add(Content.Load<Texture2D>("drones/drone" + i + "_" + j));
                 }
@@ -123,6 +126,15 @@ namespace DroneWars
             }
 
             return drones;
+        }
+
+        private Dictionary<string, SoundEffect> LoadSounds()
+        {
+            Dictionary<string, SoundEffect> sounds = new Dictionary<string, SoundEffect>
+            {
+                { "flying", Content.Load<SoundEffect>("sound/flying") }
+            };
+            return sounds;
         }
     }
 }

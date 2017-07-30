@@ -15,6 +15,7 @@ namespace DroneWars.Model
         public Vector2 Origin { get; private set; } = new Vector2(WIDTH / 2, 0);
 
         public Vector2 Pos { get { return pos; } }
+        public Vector2 Vel { get { return velocity; } }
         public int ID { get; private set; }
         public float Tilt { get; private set; }
 
