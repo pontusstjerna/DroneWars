@@ -49,6 +49,7 @@
     <Compile Include="Model\World.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\UIRenderer.cs" />
     <Compile Include="View\WorldRenderer.cs" />
   </ItemGroup>
   <ItemGroup>

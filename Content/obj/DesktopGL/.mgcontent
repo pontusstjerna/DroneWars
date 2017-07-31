@@ -4,18 +4,18 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/track1_background.png</File>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/track1_foreground.png</File>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/blocks/STONE.png</File>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/blocks/GRASS.png</File>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/drones/drone1_0.png</File>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/drones/drone1_1.png</File>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/drones/drone1_2.png</File>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/drones/drone1_3.png</File>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/drones/drone2_0.png</File>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/drones/drone2_1.png</File>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/drones/drone2_2.png</File>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/drones/drone2_3.png</File>
-    <File>G:/Programming/C#.net/dronewars/DroneWars/Content/blocks/ICE.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/track1_background.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/track1_foreground.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/blocks/STONE.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/blocks/GRASS.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/drones/drone1_0.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/drones/drone1_1.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/drones/drone1_2.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/drones/drone1_3.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/drones/drone2_0.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/drones/drone2_1.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/drones/drone2_2.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/drones/drone2_3.png</File>
+    <File>C:/Users/pontu/Documents/Programmering/C#/dronewars/Content/blocks/ICE.png</File>
   </SourceFiles>
 </SourceFileCollection>

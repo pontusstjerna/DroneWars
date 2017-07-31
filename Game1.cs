@@ -37,7 +37,7 @@ namespace DroneWars
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            GraphicsDevice.Viewport = new Viewport(0, 0, 1000, 800); //TODO
             base.Initialize();
         }
 
@@ -51,6 +51,7 @@ namespace DroneWars
             world = new World();
             controller = new PlayerController(world);
             renderer = new WorldRenderer(world, GraphicsDevice,
+                new Rectangle(0, 200, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height - 200),
                 Content.Load<Texture2D>("track1_background"),
                 LoadBlocks(),
                 LoadDrones()

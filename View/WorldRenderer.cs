@@ -15,6 +15,7 @@ namespace DroneWars.View
 
         private World world;
         private GraphicsDevice gd;
+        private Rectangle surface;
         private Texture2D background;
         private List<List<Texture2D>> drones;
         private Dictionary<BlockType, Texture2D> blocks;
@@ -24,13 +25,14 @@ namespace DroneWars.View
         private float[] frameTimes;
         private float[] onGroundTimes;
 
-        public WorldRenderer(World world, GraphicsDevice gd, Texture2D background, Dictionary<BlockType, Texture2D> blocks, List<List<Texture2D>> drones)
+        public WorldRenderer(World world, GraphicsDevice gd, Rectangle surface, Texture2D background, Dictionary<BlockType, Texture2D> blocks, List<List<Texture2D>> drones)
         {
             this.world = world;
             this.gd = gd;
             this.background = background;
             this.blocks = blocks;
             this.drones = drones;
+            this.surface = surface;
 
             frames = new int[drones.Count];
             frameTimes = new float[drones.Count];
@@ -38,7 +40,7 @@ namespace DroneWars.View
             for (int i = 0; i < onGroundTimes.Length; i++)
                 onGroundTimes[i] = 10000;
 
-            scale = Math.Min((float)gd.Viewport.Height / World.HEIGHT, (float)gd.Viewport.Width / World.WIDTH);
+            scale = Math.Min((float)surface.Height / World.HEIGHT, (float)surface.Width / World.WIDTH);
         }
 
         public void Render(SpriteBatch sb, float dTime)
@@ -54,14 +56,10 @@ namespace DroneWars.View
             sb.Begin();
             sb.Draw(
                 background,
-                Vector2.Zero,
-                null,
-                Color.White,
-                0,
-                Vector2.Zero,
-                scale,
-                SpriteEffects.None,
-                0);
+                surface,
+                null, 
+                Color.White
+                );
             sb.End();
         }
 
@@ -93,7 +91,7 @@ namespace DroneWars.View
 
         private void RenderBlockPiece(SpriteBatch sb, Texture2D texture, float x, float y, int width, int height)
         {
-            sb.Draw(texture, new Vector2(x, y), new Rectangle(0, 0, width, height), Color.White);
+            sb.Draw(texture, new Vector2(surface.X + x, surface.Y + y), new Rectangle(0, 0, width, height), Color.White);
         }
 
         private void RenderDrones(SpriteBatch sb)
@@ -102,7 +100,8 @@ namespace DroneWars.View
             for(int i = 0; i < world.Drones.Count; i++)
             {
                 Drone drone = world.Drones[i];
-                sb.Draw(drones[i][frames[i]], drone.Pos * scale, null, Color.White, drone.Tilt, drone.Origin*scale, 1, SpriteEffects.None, 0);
+                Vector2 scaledPos = new Vector2(drone.Pos.X * scale + surface.X, drone.Pos.Y * scale + surface.Y);
+                sb.Draw(drones[i][frames[i]], scaledPos, null, Color.White, drone.Tilt, drone.Origin*scale, 1, SpriteEffects.None, 0);
             }
             sb.End();
         }
