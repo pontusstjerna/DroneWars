@@ -51,9 +51,11 @@ namespace DroneWars.View
             for(int i = 0; i < world.Drones.Count; i++)
             {
                 Drone drone = world.Drones[i];
-                Vector2 pos = new Vector2(50 + (i % 2) * 550, 20 + 40 * (i/2));
+                Vector2 pos = new Vector2(70 + (i % 2) * 500, 40 + 40 * (i/2));
 
-                sb.DrawString(fonts["score"], "Drone " + (drone.ID + 1) + ": ", pos, Color.Black);
+                sb.DrawString(
+                    fonts["score"], "Drone " + (drone.ID + 1) + ": " + drone.Score,
+                    pos, Color.Black);
             }
             sb.End();
         }

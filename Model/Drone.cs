@@ -16,6 +16,7 @@ namespace DroneWars.Model
 
         public Vector2 Pos { get { return pos; } }
         public int ID { get; private set; }
+        public int Score { get; private set; }
         public float Tilt { get; private set; }
 
         internal bool OnGround { get; set; } = true;
@@ -34,11 +35,12 @@ namespace DroneWars.Model
 
         private Random random;
 
-        public Drone(Vector2 startPos, int id)
+        public Drone(Vector2 startPos, int id, int score)
         {
             pos = startPos;
             ID = id;
             random = new Random(id);
+            Score = score;
         }
 
         public void Update(float dTime)
@@ -86,6 +88,11 @@ namespace DroneWars.Model
 
             if (Tilt < maxTilt)
                 Tilt += dTime;
+        }
+
+        public void AddScore()
+        {
+            Score++;
         }
 
         internal void Bounce()

@@ -55,13 +55,14 @@ namespace DroneWars.Model
 
         private Drone SpawnDrone(int droneId)
         {
+            int score = Drones == null ? 0 : Drones[droneId].Score;
             float spawnY = Blocks[0].Rect.Y - Drone.HEIGHT;
             switch (droneId)
             {
                 case 0:
-                    return new Drone(new Vector2(WIDTH / 3, spawnY), droneId);
+                    return new Drone(new Vector2(WIDTH / 3, spawnY), droneId, score);
                 case 1:
-                    return new Drone(new Vector2(2 * WIDTH / 3, spawnY), droneId);
+                    return new Drone(new Vector2(2 * WIDTH / 3, spawnY), droneId, score);
                 default:
                     return null;
             }
@@ -79,9 +80,15 @@ namespace DroneWars.Model
                     if (drone.Pos.Y < Drones[i].Pos.Y && drone1.Intersects(drone2))
                     {
                         if (Drones[i].OnGround)
+                        {
                             Drones[drone.ID] = SpawnDrone(drone.ID);
+                            Drones[i].AddScore();
+                        }
                         else
+                        {
                             Drones[i] = SpawnDrone(i);
+                            drone.AddScore();
+                        }
                     }
                 }
             }
