@@ -1,5 +1,6 @@
 ﻿using DroneWars.Model;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -25,13 +26,13 @@ namespace DroneWars.View
         private float[] frameTimes;
         private float[] onGroundTimes;
 
-        public WorldRenderer(World world, GraphicsDevice gd, Rectangle surface, Texture2D background, Dictionary<BlockType, Texture2D> blocks, List<List<Texture2D>> drones)
+        public WorldRenderer(World world, GraphicsDevice gd, Rectangle surface, ContentManager content)
         {
             this.world = world;
             this.gd = gd;
-            this.background = background;
-            this.blocks = blocks;
-            this.drones = drones;
+            background = content.Load<Texture2D>("track1_background");
+            this.blocks = LoadBlocks(content);
+            this.drones = LoadDrones(content);
             this.surface = surface;
 
             frames = new int[drones.Count];
@@ -122,6 +123,34 @@ namespace DroneWars.View
                     frameTimes[i] = 0;
                 }
             }
+        }
+
+        private Dictionary<BlockType, Texture2D> LoadBlocks(ContentManager content)
+        {
+            Dictionary<BlockType, Texture2D> blocks = new Dictionary<BlockType, Texture2D>();
+
+            foreach (BlockType type in Enum.GetValues(typeof(BlockType)))
+            {
+                blocks.Add(type, content.Load<Texture2D>("blocks/" + type.ToString()));
+            }
+
+            return blocks;
+        }
+
+        private List<List<Texture2D>> LoadDrones(ContentManager content)
+        {
+            List<List<Texture2D>> drones = new List<List<Texture2D>>();
+            for (int i = 1; i <= world.Drones.Count; i++)
+            {
+                List<Texture2D> droneTextures = new List<Texture2D>();
+                for (int j = 0; j < WorldRenderer.NUM_FRAMES; j++)
+                {
+                    droneTextures.Add(content.Load<Texture2D>("drones/drone" + i + "_" + j));
+                }
+                drones.Add(droneTextures);
+            }
+
+            return drones;
         }
     } 
 }

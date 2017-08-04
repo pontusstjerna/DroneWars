@@ -62,3 +62,5 @@ C:\Users\pontu\Documents\Programmering\C#\dronewars\bin\DesktopGL\AnyCPU\Debug\M
 C:\Users\pontu\Documents\Programmering\C#\dronewars\obj\Debug\DroneWars.csprojResolveAssemblyReference.cache
 C:\Users\pontu\Documents\Programmering\C#\dronewars\obj\Debug\DroneWars.exe
 C:\Users\pontu\Documents\Programmering\C#\dronewars\obj\Debug\DroneWars.pdb
+C:\Users\pontu\Documents\Programmering\C#\dronewars\bin\DesktopGL\AnyCPU\Debug\Content\ui\dashboard.xnb
+C:\Users\pontu\Documents\Programmering\C#\dronewars\bin\DesktopGL\AnyCPU\Debug\Content\fonts\score.xnb

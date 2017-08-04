@@ -11,15 +11,15 @@ namespace DroneWars.Model
     {
         public List<Drone> Drones { get; private set; }
         public List<Block> Blocks { get; private set; }
-        public const int WIDTH  = 1000;
-        public const int HEIGHT = 600;
+        public const int WIDTH  = 800;
+        public const int HEIGHT = 380;
 
         public World()
         {
             Blocks = new List<Block>
             {
-                new Block(BlockType.ICE, new Point(0, HEIGHT - 100), WIDTH, 100),
-                new Block(BlockType.STONE, new Point(0, 0), WIDTH, 50),
+                new Block(BlockType.ICE, new Point(0, HEIGHT - 50), WIDTH, 100),
+                new Block(BlockType.STONE, new Point(0, 0), WIDTH, 20),
                 new Block(BlockType.STONE, new Point(0, 0), 20, HEIGHT),
                 new Block(BlockType.STONE, new Point(WIDTH - 20, 0), 20, HEIGHT),
                 new Block(BlockType.ICE, new Point(WIDTH/3, HEIGHT/3), 100, 40)

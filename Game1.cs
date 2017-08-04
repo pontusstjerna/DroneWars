@@ -19,6 +19,7 @@ namespace DroneWars
 
         private World world;
         private WorldRenderer renderer;
+        private UIRenderer uiRenderer;
         private PlayerController controller;
 
 
@@ -37,7 +38,7 @@ namespace DroneWars
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            GraphicsDevice.Viewport = new Viewport(0, 0, 1000, 800); //TODO
+            //GraphicsDevice.Viewport = new Viewport(0, 0, 1000, 1000); //TODO
             base.Initialize();
         }
 
@@ -51,11 +52,9 @@ namespace DroneWars
             world = new World();
             controller = new PlayerController(world);
             renderer = new WorldRenderer(world, GraphicsDevice,
-                new Rectangle(0, 200, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height - 200),
-                Content.Load<Texture2D>("track1_background"),
-                LoadBlocks(),
-                LoadDrones()
-                );
+                new Rectangle(0, 100, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height - 100),
+                Content);
+            uiRenderer = new UIRenderer(world, GraphicsDevice, Content);
                
         }
 
@@ -94,36 +93,9 @@ namespace DroneWars
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             renderer.Render(spriteBatch, (float)gameTime.ElapsedGameTime.TotalSeconds);
+            uiRenderer.Render(spriteBatch, (float)gameTime.ElapsedGameTime.TotalSeconds);
 
             base.Draw(gameTime);
-        }
-
-        private Dictionary<BlockType, Texture2D> LoadBlocks()
-        {
-            Dictionary<BlockType, Texture2D> blocks = new Dictionary<BlockType, Texture2D>();
-
-            foreach(BlockType type in Enum.GetValues(typeof(BlockType)))
-            {
-                blocks.Add(type, Content.Load<Texture2D>("blocks/" + type.ToString()));
-            }
-
-            return blocks;
-        }
-
-        private List<List<Texture2D>> LoadDrones()
-        {
-            List<List<Texture2D>> drones = new List<List<Texture2D>>();
-            for(int i = 1; i <= world.Drones.Count; i++)
-            {
-                List<Texture2D> droneTextures = new List<Texture2D>();
-                for(int j = 0; j < WorldRenderer.NUM_FRAMES; j++)
-                {
-                    droneTextures.Add(Content.Load<Texture2D>("drones/drone" + i + "_" + j));
-                }
-                drones.Add(droneTextures);
-            }
-
-            return drones;
         }
     }
 }
