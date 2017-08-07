@@ -14,6 +14,8 @@ namespace DroneWars.Model
         public const int WIDTH  = 800;
         public const int HEIGHT = 380;
 
+        private Vector2[] spawnPositions;
+
         public World()
         {
             Blocks = new List<Block>
@@ -26,16 +28,22 @@ namespace DroneWars.Model
 
             };
 
+            spawnPositions = new Vector2[] 
+            {
+                new Vector2(WIDTH / 3, Blocks[0].Rect.Y - Drone.HEIGHT),
+                new Vector2(2 * WIDTH / 3, Blocks[0].Rect.Y - Drone.HEIGHT)
+            };
+
             SpawnDrones();
         }
 
         public void Update(float dTime)
         {
-            for(int i = 0; i < Drones.Count; i++)
+            foreach(Drone drone in Drones)
             {
-                Drones[i].Update(dTime);
-                CollideBlocks(Drones[i]);
-                CollideDrones(Drones[i]);
+                drone.Update(dTime);
+                CollideBlocks(drone);
+                CollideDrones(drone);
             }
         }
 
@@ -48,26 +56,11 @@ namespace DroneWars.Model
         {
             Drones = new List<Drone>
             {
-                SpawnDrone(0),
-                SpawnDrone(1)
+                new Drone(spawnPositions[0], 0),
+                new Drone(spawnPositions[1], 1)
             };
         }
-
-        private Drone SpawnDrone(int droneId)
-        {
-            int score = Drones == null ? 0 : Drones[droneId].Score;
-            float spawnY = Blocks[0].Rect.Y - Drone.HEIGHT;
-            switch (droneId)
-            {
-                case 0:
-                    return new Drone(new Vector2(WIDTH / 3, spawnY), droneId, score);
-                case 1:
-                    return new Drone(new Vector2(2 * WIDTH / 3, spawnY), droneId, score);
-                default:
-                    return null;
-            }
-        }
-
+        
         private void CollideDrones(Drone drone)
         {
             for(int i = 0; i < Drones.Count; i++)
@@ -81,12 +74,12 @@ namespace DroneWars.Model
                     {
                         if (Drones[i].OnGround)
                         {
-                            Drones[drone.ID] = SpawnDrone(drone.ID);
+                            Drones[drone.ID].Destroy(spawnPositions[drone.ID]);
                             Drones[i].AddScore();
                         }
                         else
                         {
-                            Drones[i] = SpawnDrone(i);
+                            Drones[i].Destroy(spawnPositions[Drones[i].ID]);
                             drone.AddScore();
                         }
                     }
@@ -110,13 +103,13 @@ namespace DroneWars.Model
                     
                     if (drone.Pos.Y < block.Rect.Y + block.Rect.Height && drone.Pos.Y + Drone.HEIGHT > block.Rect.Y + block.Rect.Height)
                     {
-                        Drones[drone.ID] = SpawnDrone(drone.ID);
+                        Drones[drone.ID].Destroy(spawnPositions[drone.ID]);
                     }
                 }
 
                 if (new Rectangle((int)(drone.Pos.X - Drone.WIDTH/2), (int)(drone.Pos.Y), Drone.WIDTH, Drone.HEIGHT).Intersects(block.Rect))
                 {
-                    Drones[drone.ID] = SpawnDrone(drone.ID);
+                    Drones[drone.ID].Destroy(spawnPositions[drone.ID]);
                 }
             }
 

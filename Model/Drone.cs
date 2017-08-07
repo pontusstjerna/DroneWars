@@ -11,13 +11,15 @@ namespace DroneWars.Model
     {
         public const int WIDTH = 54;
         public const int HEIGHT = 25;
+        public const int RESPAWN_TIME = 3;
 
         public Vector2 Origin { get; private set; } = new Vector2(WIDTH / 2, 0);
 
         public Vector2 Pos { get { return pos; } }
         public int ID { get; private set; }
-        public int Score { get; private set; }
-        public float Tilt { get; private set; }
+        public int Score { get; private set; } = 0;
+        public float Tilt { get; private set; } = 0;
+        public float RespawnTime { get; private set; } = RESPAWN_TIME;
 
         internal bool OnGround { get; set; } = true;
 
@@ -25,7 +27,7 @@ namespace DroneWars.Model
         private const int accHorizontal = 250;
         private const float bounceFriction = 0.5f;
         private const float airResistance = 1f;
-        private const float maxTilt = (float)(Math.PI / 8);
+        private const float maxTilt = (float)(Math.PI / 8); //20 deg I believe
 
         private Vector2 pos;
         private Vector2 velocity;
@@ -35,12 +37,11 @@ namespace DroneWars.Model
 
         private Random random;
 
-        public Drone(Vector2 startPos, int id, int score)
+        public Drone(Vector2 startPos, int id)
         {
             pos = startPos;
             ID = id;
             random = new Random(id);
-            Score = score;
         }
 
         public void Update(float dTime)
@@ -55,6 +56,7 @@ namespace DroneWars.Model
             if (released)
                 Tilt *= 0.95f;
 
+            CountdownRespawn(dTime);
             Hover();
         }
 
@@ -65,7 +67,8 @@ namespace DroneWars.Model
 
         public void Up()
         {
-            velocity.Y -= dTime*accVertical;
+            if(RespawnTime <= 0)
+                velocity.Y -= dTime*accVertical;
         }
 
         public void Down()
@@ -76,6 +79,8 @@ namespace DroneWars.Model
 
         public void Left()
         {
+            if (OnGround) return;
+
             velocity.X -= dTime*accHorizontal;
 
             if (Tilt > -maxTilt)
@@ -84,6 +89,8 @@ namespace DroneWars.Model
 
         public void Right()
         {
+            if (OnGround) return;
+
             velocity.X += dTime*accHorizontal;
 
             if (Tilt < maxTilt)
@@ -95,9 +102,25 @@ namespace DroneWars.Model
             Score++;
         }
 
+        public void Destroy(Vector2 respawnPos)
+        {
+            RespawnTime = RESPAWN_TIME;
+            pos = respawnPos;
+            velocity = Vector2.Zero;
+            Tilt = 0;
+        }
+
         internal void Bounce()
         {
             velocity.Y = -velocity.Y * bounceFriction;
+        }
+
+        private void CountdownRespawn(float dTime)
+        {
+            if(RespawnTime > 0)
+            {
+                RespawnTime -= dTime;
+            }
         }
 
         private void Hover()

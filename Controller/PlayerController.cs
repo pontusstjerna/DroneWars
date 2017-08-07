@@ -28,29 +28,35 @@ namespace DroneWars.Controller
         private void CheckKeyboardPlayer1()
         {
             KeyboardState newState = Keyboard.GetState();
+            bool pressed = false;
 
             if (newState.IsKeyDown(Keys.Up))
             {
                 world.Drones[0].Up();
             }
-            else if (newState.IsKeyDown(Keys.Down))
+
+            if (newState.IsKeyDown(Keys.Down))
             {
                 world.Drones[0].Down();
             }
-            else if (newState.IsKeyDown(Keys.Right))
+
+            if (newState.IsKeyDown(Keys.Right))
             {
                 world.Drones[0].Right();
             }
-            else if (newState.IsKeyDown(Keys.Left))
+
+            if (newState.IsKeyDown(Keys.Left))
             {
                 world.Drones[0].Left();
             }
-            else if (newState.IsKeyDown(Keys.Enter))
+
+            if (newState.IsKeyDown(Keys.Enter))
             {
                 if (!oldState.IsKeyDown(Keys.Enter))
                     world.Reset();
             }
-            else
+
+            if(!pressed) //TODO: Complete
                 world.Drones[0].Release();
 
             oldState = newState;
